@@ -34,12 +34,18 @@ class OrderController extends Controller
             $contract_list_id = null;
             $user_id = $request->query('user_id');
             $price_list_id = $request->query('price_list_id');
+            $user = User::find($user_id);
 
             $order = Order::create([
                 'user_id' => $user_id,
                 'total_price' => 0,
-                'created_at' => now(),
-                'updated_at' => now()
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'address' => $user->address,
+                'city' => $user->city,
+                'country' => $user->country,
             ]);
 
             $user = User::find($user_id);

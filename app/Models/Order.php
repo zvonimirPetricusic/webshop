@@ -13,13 +13,19 @@ class Order extends Model
         'user_id', 'total_price', 'first_name', 'last_name', 'email', 'phone', 'address', 'city', 'country'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function products()
     {
-        return $this->hasMany(OrderProduct::class);
+        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'sku')->withPivot('price', 'quantity');
     }
 
     public function modifiers()
     {
-        return $this->hasMany(OrderModifier::class);
+        return $this->hasMany(OrderModifier::class, 'order_id');
     }
+
 }

@@ -10,6 +10,11 @@ class OrderModifier extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id', 'modifier_type', 'value'
+        'modifier_type', 'value', 'order_id',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
 }
