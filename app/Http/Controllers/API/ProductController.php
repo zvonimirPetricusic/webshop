@@ -51,6 +51,13 @@ class ProductController extends Controller
         $price_list_id = $request->query('price_list_id');
         $contract_list_id = null;
 
+        if ($user_id) {
+            $user = User::find($user_id);
+            if ($user && $user->contract_list_id) {
+                $contract_list_id = $user->contract_list_id;
+            }
+        }
+
         $query = ProductDetails::getProductPrice($contract_list_id, $price_list_id);
 
         if ($request->has('title')) {
@@ -77,13 +84,6 @@ class ProductController extends Controller
 
             if (in_array($sort_by, ['products.price', 'title'])) {
                 $query->orderBy($sort_by, $sort_direction);
-            }
-        }
-
-        if ($user_id) {
-            $user = User::find($user_id);
-            if ($user && $user->contract_list_id) {
-                $contract_list_id = $user->contract_list_id;
             }
         }
 
