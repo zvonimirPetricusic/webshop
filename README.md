@@ -1,4 +1,9 @@
+markdown
+
 # WEBSHOP API DOCUMENTATION
+
+## Introduction
+Welcome to the Webshop API documentation. Follow the steps below to set up and use the API.
 
 ## Setup Instructions
 
@@ -6,38 +11,31 @@
    ```bash
    git clone https://github.com/zvonimirPetricusic/webshop.git
 
-    Configure environment variables:
+2. **Configure environment variables:**
     Rename .env.example to .env and modify the database connection settings as needed.
 
-    Create a new database:
+3. **Create a new database:**
     Create a new database named webshop.
 
-    Navigate to the project directory:
+4. **Navigate to the project directory:**
+    ```bash
+    cd webshop
 
-    bash
+5. **Start the development server:**
+    ```bash
+    php artisan serve
 
-cd webshop
+6. **Run database migrations:**
+    ```bash
+    php artisan migrate
 
-Start the development server:
+7. **Seed the database with dummy data:**
+    ```bash
+    php artisan db:seed
 
-bash
+8. **Import the Postman collection:**
+    Import the provided Postman collection to easily interact with the API.
 
-php artisan serve
+9. **Make API requests:**
+    Use Postman to make API requests and modify parameters as needed. For full Postman documentation, visit this link https://documenter.getpostman.com/view/37207651/2sA3kaDzFs
 
-Run database migrations:
-
-bash
-
-php artisan migrate
-
-Seed the database with dummy data:
-
-bash
-
-php artisan db:seed
-
-Import the Postman collection:
-Import the provided Postman collection to easily interact with the API.
-
-Make API requests:
-Use Postman to make API requests and modify parameters as needed. For full Postman documentation, visit this link.
