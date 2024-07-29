@@ -8,36 +8,35 @@ use Tests\TestCase;
 
 class FilterProductsTest extends TestCase
 {
-    public function test_create_order(): void
+    /**
+     * A basic feature test example.
+     */
+    public function test_filter_products(): void
     {
-        $response = $this->postJson('/api/orders?user_id=1&price_list_id=1', [
-            'products' => [
-                [
-                    'sku' => 'SKU-03781',
-                    'quantity' => 1
-                ],
-                [
-                    'sku' => 'SKU-04598',
-                    'quantity' => 2
-                ]
-            ]
-        ]);
+        $response = $this->getJson('/api/products/filter?user_id=1&price_list_id=1&title=nostrum&category_id=1&min_price=50&max_price=100&sort_by=price&sort_direction=asc');
 
         $response->assertStatus(200)
-        ->assertJson([
-            'status' => 'success',
-            'status_code' => 200,
-            'message' => 'Order created successfully!'
-        ])
         ->assertJsonStructure([
             'status',
             'status_code',
             'data' => [
-                'user_id',
-                'total_price',
-                'updated_at',
+                    'product_data' => [
+                        '*' => [
+                            'sku',
+                            'title',
+                            'description',
+                            'price',
                 'created_at',
-                'id'
+                            'updated_at',
+                            'effective_price'
+                        ]
+                    ],
+                    'current_page',
+                    'last_page',
+                    'per_page',
+                    'total',
+                    'prev_page_url',
+                    'next_page_url'
             ],
             'message'
         ]);
